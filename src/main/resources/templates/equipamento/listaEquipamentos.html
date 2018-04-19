@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html xmlns:th= "http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="@{/layout}">
+  
+<head>
+	<title>Alert TV</title>
+	<!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+
+<body>
+	<section layout:fragment="content">
+ 
+    	<div class="container">
+ 			<h3><a href="/novoEquipamento" class="waves-effect waves-light btn ">Adicionar</a></h3>
+ 		</div>
+ 	
+ 		<table class="container striped">
+ 			<thead>
+ 				<tr>
+ 					<th>MAC Address</th>
+ 					<th>Cliente</th>
+ 					<th>CEP</th>
+ 					<th>Endereço</th>
+ 					<th>Cidade</th>
+ 					<th>Estado</th>
+ 					<th>Editar</th>
+ 					<th>Excluir</th> 
+ 				</tr>	
+ 			</thead>  
+ 			<tbody>
+  				<tr th:each="equipamento : ${equipamentos}">
+					<td><span th:text="${equipamento.macAddress}"></span></td>
+ 					<td><span th:text="${equipamento.cliente}"></span></td>
+ 					<td><span th:text="${equipamento.cep}"></span></td>
+ 					<td><span th:text="${equipamento.endereco}"></span></td>
+ 					<td><span th:text="${equipamento.cidade}"></span></td>
+ 				 	<td><span th:text="${equipamento.estado}"></span></td>
+ 				 	<td>
+						<form action="/editarEquipamento"  method="get">
+		  					<input type="hidden" name="macAddress" th:value="${equipamento.macAddress}" />					   			
+		  					<button type="submit"  class="btn waves-effect waves-light"><i class="material-icons">edit</i></button>
+						</form>
+					</td>
+					<td>	
+						<form action="/deletarEquipamento" >					   			 
+		  					<input type="hidden" name="macAddress" th:value="${equipamento.macAddress}" />								 					   			 
+		  					<button type="submit"  class="btn waves-effect waves-light" onclick="return confirm('Deseja realmente excluir esse registro?');"><i class="material-icons">delete</i></button>
+						</form>
+	    			</td>		
+ 				</tr>
+ 	 		</tbody>
+ 		</table>
+	</section>
+	
+	 <!-- JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+</body>
+
+</html>

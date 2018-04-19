@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th= "http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="@{/layout}">
+  
+<head>
+	<title>Alert TV</title>
+	<!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+</head>
+
+
+<body>
+	<section layout:fragment="content">
+ 	
+ 		<table class="container highlight">
+ 			<thead>
+ 				<tr>
+ 					<th>MAC Address</th>
+ 					<th>Cliente</th>
+ 					<th>Sinal1</th>
+ 					<th>Sinal2</th>
+ 				</tr>	
+ 			</thead>  
+ 			<tbody>
+  				<tr th:each="sinalEquipamento : ${sinalEquipamento}">
+					<td th:bgcolor="${sinalEquipamento.cor}"><span th:text="${sinalEquipamento.macAddress}"></span></td>
+ 					<td><span th:text="${sinalEquipamento.cliente}"></span></td>
+ 					<td><span th:text="${sinalEquipamento.sinal1}"></span></td>
+ 					<td><span th:text="${sinalEquipamento.sinal2}"></span></td>
+ 				</tr>
+ 	 		</tbody>
+ 		</table>
+	</section>
+	
+	 <!-- JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+   
+</body>
+
+</html>
